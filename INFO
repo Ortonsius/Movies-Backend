@@ -89,9 +89,6 @@
             <= 200 SUCCESS | movie_list
             <= 422 INVALID_TOKEN | msg
             <= 401 UNAUTH_TOKEN | msg
-            <= 200 UNKNOWN_MOVIE | msg
-            <= 200 ALREADY_RATED | msg
-            <= 200 INVALID_RATE_VALUE | msg
         [+] /api/admin/movie/add
             => token,title,desc,show,end
             <= 200 SUCCESS | movie_list
