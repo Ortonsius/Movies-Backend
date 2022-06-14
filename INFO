@@ -1,0 +1,109 @@
+[+] Test Backend GDI
+    [+] Deskripsi
+        [-] Membuat Rest API untuk film
+    [+] Ketentuan
+        [-] Handling error, penamaan url, struktur data, status code
+    [+] Kriteria
+        [-] CRUD pada film
+        [-] Film yang sedang tayang saat ini
+        [-] Menampilkan film yang akan hadir (coming soon)
+        [-] Login Register (admin,user)
+        [-] User menyimpan film ke dalam daftar favorit
+        [-] User dapat memberi rating 1 - 5
+    [+] Database
+        [+] Accounts
+            [-] UID
+            [-] Name
+            [-] Password
+            [-] Role
+        [+] Onlines
+            [-] UID
+            [-] Token
+            [-] Role
+            [-] Expired at
+        [+] Movies
+            [-] MID
+            [-] Title
+            [-] Description
+            [-] Rating
+            [-] Show time
+            [-] End time
+        [+] Favorite movies
+            [-] UID
+            [-] MID
+        [+] Movie rates
+            [-] UID
+            [-] MID
+            [-] Rate
+    [+] API
+        [+] /api/login
+            => usr,pwd
+            <= 200 SUCCESS | token
+            <= 422 INVALID_INPUT | msg
+            <= 401 WRONG_PWD_USERNAME | msg
+        [+] /api/register
+            => usr,pwd
+            <= 200 SUCCESS | msg
+            <= 200 USER EXIST | msg
+            <= 422 INVALID_ACC | msg
+        [+] /api/logout
+            => token
+            <= 200 SUCCESS | msg
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/show
+            => token
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/coming-soon
+            => token
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/fav/set
+            => token
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/fav/get
+            => token
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/fav/del
+            => token
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/movie/{MID}/{rate}
+            => token
+            <= 200 SUCCESS | msg
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+            <= 200 INVALID_RATE_VALUE | msg
+            <= 200 ALREADY_RATED | msg
+            <= 200 UNKNOWN_MOVIE | msg
+        [+] /api/admin/movie/list
+            => token
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_TOKEN | msg
+            <= 401 UNAUTH_TOKEN | msg
+            <= 200 UNKNOWN_MOVIE | msg
+            <= 200 ALREADY_RATED | msg
+            <= 200 INVALID_RATE_VALUE | msg
+        [+] /api/admin/movie/add
+            => token,title,desc,show,end
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_INPUT | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/admin/movie/update
+            => token,mid,title,desc,show,end
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_INPUT | msg
+            <= 401 UNAUTH_TOKEN | msg
+        [+] /api/admin/movie/delete
+            => token,mid
+            <= 200 SUCCESS | movie_list
+            <= 422 INVALID_INPUT | msg
+            <= 401 UNAUTH_TOKEN | msg
